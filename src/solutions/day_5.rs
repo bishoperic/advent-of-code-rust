@@ -1,5 +1,3 @@
-use std::ops::RangeInclusive;
-
 use crate::common::Solution;
 
 pub struct Day5 {}
@@ -192,16 +190,5 @@ impl Map {
         }
 
         self.data[y][x] += 1;
-    }
-    fn display_map(&self) {
-        let data = self.data.clone();
-
-        println!(
-            "{}",
-            data.iter()
-                .map(|row| { row.iter().map(|x| { x.to_string() }).collect::<String>() })
-                .collect::<Vec<String>>()
-                .join("\n")
-        );
     }
 }
