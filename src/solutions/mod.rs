@@ -7,7 +7,7 @@ mod day_6;
 
 use crate::common::Solution;
 
-pub const ALL: [&dyn Solution; 5] = [
+pub const ALL: [&dyn Solution; 6] = [
     &day_1::Day1 {},
     &day_2::Day2 {},
     &day_3::Day3 {},
