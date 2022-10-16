@@ -1,0 +1,16 @@
+{
+    "configurations": [
+        {
+            "type": "cargo",
+            "cargoArgs": ["run"],
+            "executableArgs": ["9", "b"],
+            "name": "Run",
+        },
+        {
+            "type": "cargo",
+            "cargoArgs": ["fmt"],
+            "name": "Format",
+        },
+
+    ]
+}
