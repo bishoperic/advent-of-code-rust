@@ -7,10 +7,11 @@ mod day_6;
 mod day_7;
 mod day_8;
 mod day_9;
+mod day_10;
 
 use crate::common::Solution;
 
-pub const ALL: [&dyn Solution; 9] = [
+pub const ALL: [&dyn Solution; 10] = [
     &day_1::Day1 {},
     &day_2::Day2 {},
     &day_3::Day3 {},
@@ -20,4 +21,5 @@ pub const ALL: [&dyn Solution; 9] = [
     &day_7::Day7 {},
     &day_8::Day8 {},
     &day_9::Day9 {},
+    &day_10::Day10 {},
 ];
