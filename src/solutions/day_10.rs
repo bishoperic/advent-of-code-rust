@@ -54,7 +54,9 @@ impl Solution for Day10 {
         }
 
         autocomplete_scores.sort();
-        let middle_score = autocomplete_scores.get(autocomplete_scores.len() / 2).unwrap();
+        let middle_score = autocomplete_scores
+            .get(autocomplete_scores.len() / 2)
+            .unwrap();
 
         middle_score.to_string()
     }
@@ -139,6 +141,6 @@ impl Validated {
         (validated, current_stack)
     }
     fn validate_list(validations: Vec<Validated>) -> bool {
-        validations.iter().all(|x| { x.valid })
+        validations.iter().all(|x| x.valid)
     }
 }
