@@ -2,9 +2,9 @@ use std::collections::{HashMap, HashSet};
 
 use crate::common::Solution;
 
-pub struct Day8 {}
+pub struct Day08 {}
 
-impl Solution for Day8 {
+impl Solution for Day08 {
     fn part_a(&self, input: String) -> String {
         let mut data: Vec<_> = input
             .lines()

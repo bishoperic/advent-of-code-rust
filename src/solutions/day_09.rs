@@ -13,9 +13,9 @@ const KERNEL: [Point; 4] = [
     // (-1, -1),
 ];
 
-pub struct Day9 {}
+pub struct Day09 {}
 
-impl Solution for Day9 {
+impl Solution for Day09 {
     fn part_a(&self, input: String) -> String {
         let heightmap = input
             .lines()

@@ -1,8 +1,8 @@
 use crate::common::Solution;
 
-pub struct Day2 {}
+pub struct Day02 {}
 
-impl Solution for Day2 {
+impl Solution for Day02 {
     fn part_a(&self, input: String) -> String {
         let mut horiz_pos = 0;
         let mut depth = 0;

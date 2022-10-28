@@ -1,8 +1,8 @@
 use crate::common::Solution;
 
-pub struct Day3 {}
+pub struct Day03 {}
 
-impl Solution for Day3 {
+impl Solution for Day03 {
     fn part_a(&self, input: String) -> String {
         let mut sum: [usize; 12] = [0; 12];
 

@@ -1,27 +1,27 @@
-mod day_1;
+mod day_01;
+mod day_02;
+mod day_03;
+mod day_04;
+mod day_05;
+mod day_06;
+mod day_07;
+mod day_08;
+mod day_09;
 mod day_10;
 mod day_11;
-mod day_2;
-mod day_3;
-mod day_4;
-mod day_5;
-mod day_6;
-mod day_7;
-mod day_8;
-mod day_9;
 
 use crate::common::Solution;
 
 pub const ALL: [&dyn Solution; 11] = [
-    &day_1::Day1 {},
-    &day_2::Day2 {},
-    &day_3::Day3 {},
-    &day_4::Day4 {},
-    &day_5::Day5 {},
-    &day_6::Day6 {},
-    &day_7::Day7 {},
-    &day_8::Day8 {},
-    &day_9::Day9 {},
+    &day_01::Day01 {},
+    &day_02::Day02 {},
+    &day_03::Day03 {},
+    &day_04::Day04 {},
+    &day_05::Day05 {},
+    &day_06::Day06 {},
+    &day_07::Day07 {},
+    &day_08::Day08 {},
+    &day_09::Day09 {},
     &day_10::Day10 {},
     &day_11::Day11 {},
 ];

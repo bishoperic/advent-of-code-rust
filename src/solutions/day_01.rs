@@ -1,8 +1,8 @@
 use crate::common::Solution;
 
-pub struct Day1 {}
+pub struct Day01 {}
 
-impl Solution for Day1 {
+impl Solution for Day01 {
     fn part_a(&self, input: String) -> String {
         let data: Vec<u32> = input.lines().map(|x| x.parse::<u32>().unwrap()).collect();
 
