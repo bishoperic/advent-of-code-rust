@@ -1,5 +1,6 @@
 mod common;
 mod solutions;
+mod solutions2022;
 
 use std::env;
 
@@ -9,7 +10,7 @@ fn main() {
 
     let day: usize = day.parse().expect("Day was not a number!");
 
-    let solution = solutions::ALL
+    let solution = solutions2022::ALL
         .iter()
         .nth(day - 1)
         .expect("Couldn't find specified day!");
