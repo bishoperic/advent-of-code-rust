@@ -17,7 +17,20 @@ impl Solution for Day03 {
     }
 
     fn part_b(&self, input: String) -> String {
-        todo!()
+        let sacks: Vec<_> = input.lines().map(|line| Rucksack::new(line)).collect();
+
+        let sacks = sacks.chunks(3).map(|elf_group| {
+            let elf1 = elf_group[0].get_item_set();
+            let elf2 = elf_group[1].get_item_set();
+            let elf3 = elf_group[2].get_item_set();
+
+            let mut shared: HashSet<_> = elf1.intersection(&elf2).map(|x| *x).collect();
+            shared = shared.intersection(&elf3).map(|x| *x).collect();
+
+            item_to_priority(*shared.iter().next().unwrap()).unwrap() as i64
+        });
+
+        sacks.sum::<i64>().to_string()
     }
 }
 
@@ -55,6 +68,18 @@ impl Rucksack {
         } else {
             None
         };
+    }
+    fn get_item_set(&self) -> HashSet<char> {
+        let mut set = HashSet::new();
+
+        for item in self.compartment1.chars() {
+            set.insert(item);
+        }
+        for item in self.compartment2.chars() {
+            set.insert(item);
+        }
+
+        set
     }
 }
 
