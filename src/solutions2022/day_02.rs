@@ -30,7 +30,32 @@ impl Solution for Day02 {
     }
 
     fn part_b(&self, input: String) -> String {
-        todo!()
+        let games = input.lines().map(|line| {
+            let mut options = line.split(" ");
+            let opponent = options.next().unwrap();
+            let you = options.next().unwrap();
+
+            let opponent = match opponent {
+                "A" => Choice::Rock,
+                "B" => Choice::Paper,
+                "C" => Choice::Scissors,
+                _err => panic!("{:#?}", _err),
+            };
+            let you = match you {
+                "X" => Outcome::Lose,
+                "Y" => Outcome::Draw,
+                "Z" => Outcome::Win,
+                _err => panic!("{:#?}", _err),
+            };
+
+            let you = opponent.shape_for_outcome(&you);
+
+            Game { opponent, you }
+        });
+
+        let total_score: i64 = games.map(|game| game.score()).sum();
+
+        total_score.to_string()
     }
 }
 
@@ -58,4 +83,26 @@ enum Choice {
     Rock,
     Paper,
     Scissors,
+}
+
+impl Choice {
+    fn shape_for_outcome(&self, outcome: &Outcome) -> Choice {
+        match (self, outcome) {
+            (Choice::Rock, Outcome::Win) => Choice::Paper,
+            (Choice::Rock, Outcome::Lose) => Choice::Scissors,
+            (Choice::Rock, Outcome::Draw) => Choice::Rock,
+            (Choice::Paper, Outcome::Win) => Choice::Scissors,
+            (Choice::Paper, Outcome::Lose) => Choice::Rock,
+            (Choice::Paper, Outcome::Draw) => Choice::Paper,
+            (Choice::Scissors, Outcome::Win) => Choice::Rock,
+            (Choice::Scissors, Outcome::Lose) => Choice::Paper,
+            (Choice::Scissors, Outcome::Draw) => Choice::Scissors,
+        }
+    }
+}
+
+enum Outcome {
+    Win,
+    Lose,
+    Draw,
 }
