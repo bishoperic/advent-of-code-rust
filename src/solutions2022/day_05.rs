@@ -15,7 +15,7 @@ impl Solution for Day05 {
             .collect();
 
         for instruction in instructions {
-            stacks.move_stack(instruction);
+            stacks.move_stack_normal(instruction);
         }
 
         stacks
@@ -25,7 +25,25 @@ impl Solution for Day05 {
             .collect()
     }
     fn part_b(&self, input: String) -> String {
-        todo!()
+        let mut data = input.split("\n\n");
+
+        let mut stacks = Stacks::new(data.next().unwrap());
+        let instructions: Vec<Instruction> = data
+            .next()
+            .unwrap()
+            .lines()
+            .map(|line| Instruction::new(line))
+            .collect();
+
+        for instruction in instructions {
+            stacks.move_stack_in_order(instruction);
+        }
+
+        stacks
+            .get_stack_tops()
+            .iter()
+            .map(|container| container.0)
+            .collect()
     }
 }
 
@@ -83,7 +101,7 @@ impl Stacks {
 
         Self { stack_list }
     }
-    fn move_stack(&mut self, instruction: Instruction) {
+    fn move_stack_normal(&mut self, instruction: Instruction) {
         let mut move_stack = {
             let starting_stack = self
                 .stack_list
@@ -97,6 +115,29 @@ impl Stacks {
         };
 
         move_stack.reverse();
+
+        let ending_stack = self
+            .stack_list
+            .get_mut(instruction.end_column as usize)
+            .unwrap();
+
+        ending_stack.append(&mut move_stack.to_vec());
+    }
+    fn move_stack_in_order(&mut self, instruction: Instruction) {
+        let mut move_stack = {
+            let starting_stack = self
+                .stack_list
+                .get_mut(instruction.start_column as usize)
+                .unwrap();
+            let stack_size = starting_stack.len();
+
+            let move_stack = starting_stack.drain(stack_size - instruction.move_total as usize..);
+
+            move_stack.collect::<Vec<_>>()
+        };
+
+        // don't need this anymore
+        // move_stack.reverse();
 
         let ending_stack = self
             .stack_list
