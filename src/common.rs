@@ -9,7 +9,7 @@ pub trait Solution {
 }
 
 pub fn get_input(day: u32) -> String {
-    let filepath = "data2022/";
+    let filepath = "data2023/";
     let filepath = format!("{}day_{}.txt", filepath, day);
     let mut file = File::open(&filepath).unwrap_or_else(|error| {
         if error.kind() == ErrorKind::NotFound {
