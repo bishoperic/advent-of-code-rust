@@ -8,6 +8,7 @@ mod day_07;
 
 use crate::common::Solution;
 
+#[allow(dead_code)]
 pub const ALL: [&dyn Solution; 7] = [
     &day_01::Day01 {},
     &day_02::Day02 {},

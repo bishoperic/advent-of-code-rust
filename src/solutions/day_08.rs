@@ -167,7 +167,6 @@ impl SegmentPossibilities {
 
             // get all of the signal wire inputs shared by all digits that have the same remaining possibilities
             let shared_inputs = digits
-                .clone()
                 .iter()
                 .filter(|number| number.possibilities == digit.possibilities)
                 .map(|number| number.activated_wires.clone())
