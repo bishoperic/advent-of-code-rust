@@ -6,26 +6,46 @@ mod solutions2023;
 use std::env;
 
 fn main() {
-    let day = env::args().nth(1).expect("Day not specified!");
-    let part = env::args().nth(2).expect("Part not specified!");
+    let mut args = env::args();
+    let executable_name = args.next();
 
-    let day: usize = day.parse().expect("Day was not a number!");
+    let year = args
+        .next()
+        .ok_or("Missing argument for which year to run")
+        .and_then(|day| day.parse::<i32>().map_err(|_| "Year was not a number"))
+        .and_then(|n| {
+            if (2015..=2024).contains(&n) {
+                Ok(n)
+            } else {
+                Err("Year must be between 2015 and 2024")
+            }
+        });
 
-    let solution = solutions2023::ALL
-        .iter()
-        .nth(day - 1)
-        .expect("Couldn't find specified day!");
+    let day = args
+        .next()
+        .ok_or("Missing argument for which day to run")
+        .and_then(|day| day.parse::<i32>().map_err(|_| "Day was not a number"))
+        .and_then(|n| {
+            if (1..=25).contains(&n) {
+                Ok(n)
+            } else {
+                Err("Day must be between 1 and 25")
+            }
+        });
 
-    let input = common::get_input(day as u32);
+    match (year, day) {
+        (Ok(year), Ok(day)) => {}
+        _ => {
+            let errors = [year.err(), day.err()].into_iter().filter_map(|r| r);
 
-    println!(
-        "Solution for Day {}, Part {}:\n\n{}\n",
-        day,
-        part.to_uppercase(),
-        match part.as_str() {
-            "a" => solution.part_a(input),
-            "b" => solution.part_b(input),
-            _ => panic!("Part was not correctly specified! (a | b)"),
+            eprintln!(
+                "Usage: {} <year> <day>",
+                executable_name.unwrap_or("aoc".to_string())
+            );
+
+            for error in errors {
+                eprintln!("Error: {}", error);
+            }
         }
-    );
+    }
 }
