@@ -5,9 +5,11 @@ mod solutions2023;
 
 use std::env;
 
-fn main() {
+use color_eyre::{Result, eyre::eyre};
+
+fn main() -> Result<()> {
+    let session_token = dotenvy::var("SESSION_TOKEN").ok();
     let mut args = env::args();
-    let executable_name = args.next();
 
     let year = args
         .next()
@@ -19,7 +21,8 @@ fn main() {
             } else {
                 Err("Year must be between 2015 and 2024")
             }
-        });
+        })
+        .map_err(|err| eyre!(err))?;
 
     let day = args
         .next()
@@ -31,21 +34,8 @@ fn main() {
             } else {
                 Err("Day must be between 1 and 25")
             }
-        });
+        })
+        .map_err(|err| eyre!(err))?;
 
-    match (year, day) {
-        (Ok(year), Ok(day)) => {}
-        _ => {
-            let errors = [year.err(), day.err()].into_iter().filter_map(|r| r);
-
-            eprintln!(
-                "Usage: {} <year> <day>",
-                executable_name.unwrap_or("aoc".to_string())
-            );
-
-            for error in errors {
-                eprintln!("Error: {}", error);
-            }
-        }
-    }
+    Ok(())
 }
