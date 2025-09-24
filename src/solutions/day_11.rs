@@ -1,4 +1,4 @@
-use crate::common::Solution;
+use crate::shared::Solution;
 //use colored::Colorize;
 
 pub struct Day11 {}

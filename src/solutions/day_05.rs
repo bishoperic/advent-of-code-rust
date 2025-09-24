@@ -1,4 +1,4 @@
-use crate::common::Solution;
+use crate::shared::Solution;
 
 pub struct Day05 {}
 
@@ -27,10 +27,10 @@ impl Solution for Day05 {
 
         for line in data {
             let straight_line = map.straight_line(
-                line.0 .0 as isize,
-                line.0 .1 as isize,
-                line.1 .0 as isize,
-                line.1 .1 as isize,
+                line.0.0 as isize,
+                line.0.1 as isize,
+                line.1.0 as isize,
+                line.1.1 as isize,
             );
 
             match straight_line {
@@ -78,10 +78,10 @@ impl Solution for Day05 {
 
         for line in data {
             map.line(
-                line.0 .0 as isize,
-                line.0 .1 as isize,
-                line.1 .0 as isize,
-                line.1 .1 as isize,
+                line.0.0 as isize,
+                line.0.1 as isize,
+                line.1.0 as isize,
+                line.1.1 as isize,
             );
         }
 

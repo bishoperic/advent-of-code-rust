@@ -1,6 +1,6 @@
 use std::collections::HashMap;
 
-use crate::common::Solution;
+use crate::shared::Solution;
 
 pub struct Day07 {}
 

@@ -1,6 +1,6 @@
 use std::collections::HashSet;
 
-use crate::common::Solution;
+use crate::shared::Solution;
 
 const KERNEL: [Point; 4] = [
     Point { x: 0, y: -1 },

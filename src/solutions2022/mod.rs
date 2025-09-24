@@ -6,7 +6,7 @@ mod day_05;
 mod day_06;
 mod day_07;
 
-use crate::common::Solution;
+use crate::shared::Solution;
 
 #[allow(dead_code)]
 pub const ALL: [&dyn Solution; 7] = [

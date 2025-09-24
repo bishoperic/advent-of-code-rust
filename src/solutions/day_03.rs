@@ -1,4 +1,4 @@
-use crate::common::Solution;
+use crate::shared::Solution;
 
 pub struct Day03 {}
 
@@ -69,11 +69,7 @@ fn filter_data(input: &String, num_len: usize, mode: u8) -> u32 {
         let most_common = match mode {
             0 => {
                 // budget round-up on int division
-                if sum.0 >= (sum.1 + 1) / 2 {
-                    '1'
-                } else {
-                    '0'
-                }
+                if sum.0 >= (sum.1 + 1) / 2 { '1' } else { '0' }
             }
 
             1 => {

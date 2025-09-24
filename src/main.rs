@@ -1,4 +1,4 @@
-mod common;
+mod shared;
 mod solutions;
 mod solutions2022;
 mod solutions2023;
@@ -7,9 +7,11 @@ use std::env;
 
 use color_eyre::{Result, eyre::eyre};
 
+use crate::shared::load_or_pull_data;
+
 fn main() -> Result<()> {
-    let session_token = dotenvy::var("SESSION_TOKEN").ok();
     let mut args = env::args();
+    let _ = args.next();
 
     let year = args
         .next()
@@ -36,6 +38,9 @@ fn main() -> Result<()> {
             }
         })
         .map_err(|err| eyre!(err))?;
+
+    let data = load_or_pull_data(year, day);
+    println!("{}", data);
 
     Ok(())
 }
