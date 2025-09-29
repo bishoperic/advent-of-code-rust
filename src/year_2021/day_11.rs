@@ -211,6 +211,7 @@ impl Point {
 }
 
 trait Grid {
+    #[allow(unused)]
     fn get_value(&self, location: Point) -> Option<i32>;
     fn get_mut_value(&mut self, location: Point) -> Option<&mut i32>;
 }
