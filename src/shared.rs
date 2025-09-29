@@ -24,27 +24,23 @@ fn pull_data(year: i32, day: i32) -> String {
     let mut data = String::new();
     response.read_to_string(&mut data).unwrap();
 
-    fs::create_dir_all(format_year_dir_path(year)).unwrap();
-    fs::write(format_filepath(year, day), &data).unwrap();
+    fs::create_dir_all(format_year_dir_path("data", year)).unwrap();
+    fs::write(format_data_filepath(year, day), &data).unwrap();
 
     data
 }
 
 fn load_data(year: i32, day: i32) -> Result<String> {
-    let path = construct_input_filepath(year, day);
+    let path = PathBuf::from(format_data_filepath(year, day));
     fs::read_to_string(path).map_err(|err| eyre!(err))
 }
 
-fn format_year_dir_path(year: i32) -> String {
-    format!("data/{year}")
+fn format_year_dir_path(dir: &str, year: i32) -> String {
+    format!("{dir}/{year}")
 }
 
-fn format_filepath(year: i32, day: i32) -> String {
-    format!("{}/day_{day:02}.txt", format_year_dir_path(year))
-}
-
-fn construct_input_filepath(year: i32, day: i32) -> PathBuf {
-    PathBuf::from(format_filepath(year, day))
+fn format_data_filepath(year: i32, day: i32) -> String {
+    format!("{}/day_{day:02}.txt", format_year_dir_path("data", year))
 }
 
 fn construct_aoc_input_url(year: i32, day: i32) -> Url {
@@ -58,12 +54,3 @@ pub fn load_or_pull_data(year: i32, day: i32) -> String {
         Err(_) => pull_data(year, day),
     }
 }
-
-// fn create_code() {}
-
-// fn run_code() {}
-
-// fn run_day(year: i32, day: i32) {
-//     let data = load_or_pull_data(year, day);
-//     run_code(data);
-// }
