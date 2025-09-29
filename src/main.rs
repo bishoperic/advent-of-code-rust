@@ -1,8 +1,8 @@
 mod consts;
 mod shared;
-mod solutions;
-mod solutions2022;
-mod solutions2023;
+mod year_2021;
+mod year_2022;
+mod year_2023;
 
 use std::env;
 
@@ -46,9 +46,9 @@ fn main() -> Result<()> {
     let data = load_or_pull_data(year, day);
 
     let solutions = match year {
-        2021 => solutions::SOLUTIONS.as_slice(),
-        2022 => solutions2022::SOLUTIONS.as_slice(),
-        2023 => solutions2023::SOLUTIONS.as_slice(),
+        2021 => year_2021::SOLUTIONS.as_slice(),
+        2022 => year_2022::SOLUTIONS.as_slice(),
+        2023 => year_2023::SOLUTIONS.as_slice(),
         _ => &[],
     };
 
