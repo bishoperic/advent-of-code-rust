@@ -13,7 +13,7 @@ mod day_11;
 use crate::shared::Solution;
 
 #[allow(dead_code)]
-pub const ALL: [&dyn Solution; 11] = [
+pub const SOLUTIONS: [&dyn Solution; 11] = [
     &day_01::Day01 {},
     &day_02::Day02 {},
     &day_03::Day03 {},

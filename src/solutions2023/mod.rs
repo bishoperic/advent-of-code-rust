@@ -3,4 +3,4 @@ mod day_02;
 
 use crate::shared::Solution;
 
-pub const ALL: [&dyn Solution; 2] = [&day_01::Day01 {}, &day_02::Day02 {}];
+pub const SOLUTIONS: [&dyn Solution; 2] = [&day_01::Day01 {}, &day_02::Day02 {}];

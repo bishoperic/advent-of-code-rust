@@ -15,6 +15,8 @@ use crate::{
 
 fn main() -> Result<()> {
     let mut args = env::args();
+    args.next();
+
     let year = args
         .next()
         .ok_or("Missing argument for which year to run")
@@ -42,7 +44,27 @@ fn main() -> Result<()> {
         .map_err(|err| eyre!(err))?;
 
     let data = load_or_pull_data(year, day);
-    println!("{}", data);
+
+    let solutions = match year {
+        2021 => solutions::SOLUTIONS.as_slice(),
+        2022 => solutions2022::SOLUTIONS.as_slice(),
+        2023 => solutions2023::SOLUTIONS.as_slice(),
+        _ => &[],
+    };
+
+    let solution = solutions
+        .get(day as usize - 1)
+        .ok_or(eyre!("That day doesn't have a solution"))?;
+
+    let part_a = solution.part_a(data.clone());
+
+    println!("Solution for Part A:");
+    println!("{part_a}");
+
+    let part_b = solution.part_b(data);
+
+    println!("Solution for Part B:");
+    println!("{part_b}");
 
     Ok(())
 }
